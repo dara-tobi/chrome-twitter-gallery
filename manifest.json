@@ -1,8 +1,11 @@
 {
+   "background": {
+      "scripts": [ "background.js" ]
+   },
    "content_scripts": [{
         "js": [ "index.js" ],
         "matches": [ "https://*.twitter.com/*" ],
-        "run_at": "document_idle"
+        "run_at": "document_end"
    }],
    "description": "Gallery view for a Twitter user's media.",
     "icons": {
@@ -11,7 +14,7 @@
    "manifest_version": 2,
    "name": "Twitter Gallery",
    "offline_enabled": true,
-   "permissions": [ "https://*.twitter.com/*" ],
+   "permissions": [ "https://*.twitter.com/*", "tabs" ],
    "short_name": "Twitter Gallery",
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "0.0.1"
