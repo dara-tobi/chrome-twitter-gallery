@@ -7,18 +7,22 @@ function chromeTwitterGalleryAppendGalleryLink() {
   if (profileHeading && !newProfileHeadingItem) {
 
     var userHandle = window.location.href.split('/')[3];
-    var newProfileHeadingLink = document.createElement('a');
-    newProfileHeadingItem = document.createElement('li');
 
-    newProfileHeadingItem.classList.add("ProfileHeading-toggleItem", "u-textUserColor");
-    newProfileHeadingItem.id = "twitter-gallery-item";
-    newProfileHeadingLink.classList.add("ProfileHeading-toggleLink", "js-nav");
+    if (userHandle !== "i") {
 
-    newProfileHeadingLink.href = `/search?f=images&vertical=default&q=from%3A${userHandle}&src=typd`;
-    newProfileHeadingLink.text = "View Gallery";
+      var newProfileHeadingLink = document.createElement('a');
+      newProfileHeadingItem = document.createElement('li');
 
-    newProfileHeadingItem.appendChild(newProfileHeadingLink);
-    profileHeading.appendChild(newProfileHeadingItem);
+      newProfileHeadingItem.classList.add("ProfileHeading-toggleItem", "u-textUserColor");
+      newProfileHeadingItem.id = "twitter-gallery-item";
+      newProfileHeadingLink.classList.add("ProfileHeading-toggleLink", "js-nav");
+
+      newProfileHeadingLink.href = `/search?f=images&vertical=default&q=from%3A${userHandle}&src=typd`;
+      newProfileHeadingLink.text = "View Gallery";
+
+      newProfileHeadingItem.appendChild(newProfileHeadingLink);
+      profileHeading.appendChild(newProfileHeadingItem);
+    }
   }
 }
 
