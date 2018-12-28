@@ -8,7 +8,7 @@ function chromeTwitterGalleryAppendGalleryLink() {
 
     var userHandle = window.location.href.split('/')[3];
 
-    if (userHandle !== "i") {
+    if (userHandle !== "i" && userHandle !== "mentions") {
 
       var newProfileHeadingLink = document.createElement('a');
       newProfileHeadingItem = document.createElement('li');
