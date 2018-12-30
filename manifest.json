@@ -17,5 +17,5 @@
    "permissions": [ "https://*.twitter.com/*", "tabs" ],
    "short_name": "Twitter Gallery",
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "0.0.2"
+   "version": "0.0.3"
 }
