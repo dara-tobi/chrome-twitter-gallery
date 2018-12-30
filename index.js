@@ -6,9 +6,14 @@ function chromeTwitterGalleryAppendGalleryLink() {
 
   if (profileHeading && !newProfileHeadingItem) {
 
-    var userHandle = window.location.href.split('/')[3];
+    var urlParts = window.location.href.split('/');
 
-    if (userHandle !== "i" && userHandle !== "mentions") {
+    if (!urlParts[4] && urlParts[3]) {
+      var userHandle = urlParts[3];
+    }
+
+
+    if (userHandle && userHandle !== "mentions") {
 
       var newProfileHeadingLink = document.createElement('a');
       newProfileHeadingItem = document.createElement('li');
