@@ -1,36 +1,50 @@
 function chromeTwitterGalleryAppendGalleryLink() {
 
+  if (!confirmMediaExists()) {
+    return null;
+  }
+
+
   var profileHeading = document.querySelector(".ProfileHeading-toggle");
   var newProfileHeadingItem = document.querySelector("#twitter-gallery-item");
 
 
   if (profileHeading && !newProfileHeadingItem) {
 
-    var urlParts = window.location.href.split('/');
+    var userHandle = window.location.href.split('/')[3];
 
-    if (!urlParts[4] && urlParts[3]) {
-      var userHandle = urlParts[3];
-    }
+    var newProfileHeadingLink = document.createElement('a');
+    newProfileHeadingItem = document.createElement('li');
 
+    newProfileHeadingItem.classList.add("ProfileHeading-toggleItem", "u-textUserColor");
+    newProfileHeadingItem.id = "twitter-gallery-item";
+    newProfileHeadingLink.classList.add("ProfileHeading-toggleLink", "js-nav");
 
-    if (userHandle && userHandle !== "mentions") {
+    newProfileHeadingLink.href = `/search?f=images&vertical=default&q=from%3A${userHandle}&src=typd`;
+    newProfileHeadingLink.text = "View Gallery";
 
-      var newProfileHeadingLink = document.createElement('a');
-      newProfileHeadingItem = document.createElement('li');
-
-      newProfileHeadingItem.classList.add("ProfileHeading-toggleItem", "u-textUserColor");
-      newProfileHeadingItem.id = "twitter-gallery-item";
-      newProfileHeadingLink.classList.add("ProfileHeading-toggleLink", "js-nav");
-
-      newProfileHeadingLink.href = `/search?f=images&vertical=default&q=from%3A${userHandle}&src=typd`;
-      newProfileHeadingLink.text = "View Gallery";
-
-      newProfileHeadingItem.appendChild(newProfileHeadingLink);
-      profileHeading.appendChild(newProfileHeadingItem);
-    }
+    newProfileHeadingItem.appendChild(newProfileHeadingLink);
+    profileHeading.appendChild(newProfileHeadingItem);
   }
 }
 
+
+function confirmMediaExists() {
+
+  var headingUl = document.querySelectorAll('.ProfileHeading-toggle');
+  var anchors = Array.from(headingUl[0].children);
+
+  var anchorTexts = anchors
+    .map(anchor => anchor.innerText)
+    .join(' ');
+
+
+  if (anchorTexts.includes('Media')) {
+    return true;
+  }
+
+  return false;
+}
 
 chromeTwitterGalleryAppendGalleryLink();
 
