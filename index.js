@@ -32,15 +32,18 @@ function chromeTwitterGalleryAppendGalleryLink() {
 function confirmMediaExists() {
 
   var headingUl = document.querySelectorAll('.ProfileHeading-toggle');
-  var anchors = Array.from(headingUl[0].children);
 
-  var anchorTexts = anchors
-    .map(anchor => anchor.innerText)
-    .join(' ');
+  if (headingUl[0]) {
+    var anchors = Array.from(headingUl[0].children);
+
+    var anchorTexts = anchors
+      .map(anchor => anchor.innerText)
+      .join(' ');
 
 
-  if (anchorTexts.includes('Media')) {
-    return true;
+    if (anchorTexts.includes('Media')) {
+      return true;
+    }
   }
 
   return false;
